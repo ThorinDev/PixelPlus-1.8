@@ -20,10 +20,16 @@ public class GuiUtils
 		Element ip  = new Element("IP", "ip");
 		Element fps = new Element("FPS", "fps");
 		Element ign = new Element("IGN", "ign");
-		if(AdminUtils.isSirHunt(name))
+		try{
+			if(AdminUtils.isSirHunt(name))
+			{
+				Element dankMemes = new Element ("Dank", "memes");
+				elements.add(dankMemes);
+			}
+		}
+		catch(Exception e)
 		{
-			Element dankMemes = new Element ("Dank", "memes");
-			elements.add(dankMemes);
+			//NOOP. Probably running on a development environment.
 		}
 		elements.add(players);
 		elements.add(ping);

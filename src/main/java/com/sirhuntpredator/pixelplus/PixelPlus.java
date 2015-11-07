@@ -21,6 +21,7 @@ import com.sirhuntpredator.pixelplus.command.CplayCommand;
 import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
+import com.sirhuntpredator.pixelplus.hud.EffectHud;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
@@ -95,9 +96,10 @@ public class PixelPlus
 
 				if ((!Minecraft.getMinecraft().gameSettings.showDebugInfo) && (Minecraft.getMinecraft().inGameHasFocus) && (!(Minecraft.getMinecraft().currentScreen instanceof GuiChat))) {
 				 new BasicInfoHud().render();	
-				 
+				 new EffectHud().render();
 				 if(!isBasicsAdded){
 					 GuiUtils.addBasicsToList(Minecraft.getMinecraft().thePlayer.getName());
+					 isBasicsAdded = true;
 				 }
 				}
 			}
