@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public abstract class HudBase {
 
 	public abstract int id();
-	public abstract void render();
-	public ArrayList<String> renderlist(){
+	public abstract void render() throws Exception;
+	public ArrayList<String> renderlist() throws Exception{
 		return null;
 	}
 	public abstract boolean isModularGui();
