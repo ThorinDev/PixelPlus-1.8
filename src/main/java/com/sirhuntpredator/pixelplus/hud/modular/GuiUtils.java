@@ -3,11 +3,15 @@ package com.sirhuntpredator.pixelplus.hud.modular;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
+
+import com.sirhuntpredator.pixelplus.misc.AdminUtils;
+
 public class GuiUtils
 {
 	public static List<Element> elements = new ArrayList<Element>();
 	
-	public static void addBasicsToList()
+	public static void addBasicsToList(String name) throws Exception
 	{
 		Element facing  = new Element("Facing", "facing");
 		Element ping  = new Element("Ping", "ping");
@@ -16,7 +20,11 @@ public class GuiUtils
 		Element ip  = new Element("IP", "ip");
 		Element fps = new Element("FPS", "fps");
 		Element ign = new Element("IGN", "ign");
-		
+		if(AdminUtils.isSirHunt(name))
+		{
+			Element dankMemes = new Element ("Dank", "memes");
+			elements.add(dankMemes);
+		}
 		elements.add(players);
 		elements.add(ping);
 		elements.add(time);
@@ -24,5 +32,6 @@ public class GuiUtils
 		elements.add(ip);
 		elements.add(fps);
 		elements.add(ign);
+		
 	}
 }
