@@ -19,9 +19,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.sirhuntpredator.pixelplus.command.CplayCommand;
 import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
+import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
+import com.sirhuntpredator.pixelplus.hud.HudRegistry;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
@@ -48,11 +50,15 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new CplayCommand());
 		ClientCommandHandler.instance.registerCommand(new GuiRemoveCommand());
 		ClientCommandHandler.instance.registerCommand(new ModularGuiCommand());
+		ClientCommandHandler.instance.registerCommand(new HudStateSetCommand());
+		
 	}
     @EventHandler
     public void init(FMLInitializationEvent event) throws Exception
     {
     	this.LOGGER = LogManager.getLogger("ChromaPixel");
+    	HudRegistry.registerHud(new BasicInfoHud());
+    	HudRegistry.registerHud(new EffectHud());
     	
         
     }
