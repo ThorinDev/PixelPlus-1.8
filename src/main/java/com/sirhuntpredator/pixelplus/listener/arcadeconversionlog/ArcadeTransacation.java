@@ -3,6 +3,16 @@ package com.sirhuntpredator.pixelplus.listener.arcadeconversionlog;
 public class ArcadeTransacation {
 
 	public int value;
+	public int cost;
+	public String name;
+	public String timestamp;
+	
+	public String getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 	public int getValue() {
 		return value;
 	}
@@ -21,13 +31,13 @@ public class ArcadeTransacation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int cost;
-	public String name;
-	public ArcadeTransacation(int value, int cost, String name) {
+	
+	public ArcadeTransacation(int value, int cost, String name, String timestamp) {
 		
 		this.value = value;
 		this.cost = cost;
 		this.name = name;
+		this.timestamp = timestamp;
 	}
 	
 	

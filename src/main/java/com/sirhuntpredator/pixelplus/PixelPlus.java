@@ -17,10 +17,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.sirhuntpredator.pixelplus.command.AddTransacationCommand;
 import com.sirhuntpredator.pixelplus.command.CplayCommand;
 import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
+import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
 import com.sirhuntpredator.pixelplus.hud.HudRegistry;
@@ -51,6 +53,8 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new GuiRemoveCommand());
 		ClientCommandHandler.instance.registerCommand(new ModularGuiCommand());
 		ClientCommandHandler.instance.registerCommand(new HudStateSetCommand());
+		ClientCommandHandler.instance.registerCommand(new AddTransacationCommand());
+		ClientCommandHandler.instance.registerCommand(new ViewTransacationsCommand());
 		
 	}
     @EventHandler
