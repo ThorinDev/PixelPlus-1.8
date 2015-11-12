@@ -13,7 +13,7 @@ public class ScoreboardUtils {
 	}
 	public static String returnSbName(ScoreObjective sb)
 	{
-		return sb.getName();
+		return sb.getDisplayName();
 	}
 	
 
