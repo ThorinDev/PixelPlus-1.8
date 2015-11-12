@@ -37,7 +37,7 @@ public class PixelPlus
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
 	private static PixelPlus instance;
-    private static boolean isBasicsAdded = false;
+    private static boolean areBasicsAdded = false;
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
