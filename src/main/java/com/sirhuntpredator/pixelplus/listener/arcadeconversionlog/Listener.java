@@ -2,6 +2,9 @@ package com.sirhuntpredator.pixelplus.listener.arcadeconversionlog;
 
 import java.util.Date;
 
+import com.sirhuntpredator.pixelplus.PixelPlus;
+import com.sirhuntpredator.pixelplus.misc.Util;
+
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -11,32 +14,33 @@ public class Listener {
 	public static final String CHAT_MESSAGE_ARCADE_CONVERSION_2 = "Arcade coins into";
 	public static final String CHAT_MESSAGE_ARCADE_CONVERSION_3 = "coins.";
 	@SubscribeEvent
-	public static void chat(ClientChatReceivedEvent event)
+	public void chat(ClientChatReceivedEvent event)
 	{
 		if(event.message.getUnformattedTextForChat().contains(CHAT_MESSAGE_ARCADE_CONVERSION) && event.message.getUnformattedTextForChat().contains(CHAT_MESSAGE_ARCADE_CONVERSION_2) && event.message.getUnformattedTextForChat().contains(CHAT_MESSAGE_ARCADE_CONVERSION_3))
 		{
-			String message = event.message.getUnformattedTextForChat();
+			String message = Util.removeFormattingCodes(event.message.getUnformattedTextForChat());
 		
 				//Mega Walls
-				if(message.contains("Converted 5000 Arcade coins into 500 Mega Walls coins."))
+				if(message.contains("Converted 5000 Arcade coins into 500 Mega Walls coins.")){
 				Coordinator.addTransacation("Mega Walls", 500, 5000, new Date().toString());
-				
-				if(message.contains("Converted 15000 Arcade coins into 1500 Mega Walls coins."))
+				}
+				if(message.contains("Converted 15000 Arcade coins into 1500 Mega Walls coins.")){
 				Coordinator.addTransacation("Mega Walls", 1500, 15000, new Date().toString());
-				
-				if(message.contains("Converted 100000 Arcade coins into 10000 Mega Walls coins."))
+				}
+				if(message.contains("Converted 100000 Arcade coins into 10000 Mega Walls coins.")){
 				Coordinator.addTransacation("Mega Walls", 10000, 100000, new Date().toString());
-				
+				PixelPlus.instance().logInfo("hi");
+				}
 				//Walls
-				if(message.contains("Converted 5000 Arcade coins into 500 Walls coins."))
+				if(message.contains("Converted 5000 Arcade coins into 500 Walls coins.")){
 				Coordinator.addTransacation("Walls", 500, 5000, new Date().toString());
-				
-				if(message.contains("Converted 15000 Arcade coins into 1500 Walls coins."))
+				}
+				if(message.contains("Converted 15000 Arcade coins into 1500 Walls coins.")){
 				Coordinator.addTransacation("Walls", 1500, 15000, new Date().toString());
-				
-				if(message.contains("Converted 100000 Arcade coins into 10000 Walls coins."))
+				}
+				if(message.contains("Converted 100000 Arcade coins into 10000 Walls coins.")){
 				Coordinator.addTransacation("Walls", 10000, 100000, new Date().toString());
-
+				}
 				//TntGames
 				if(message.contains("Converted 5000 Arcade coins into 2500 TNT Games coins."))
 				Coordinator.addTransacation("TNT Games", 2500, 5000, new Date().toString());
@@ -124,7 +128,6 @@ public class Listener {
 				if(message.contains("Converted 15000 Arcade coins into 2250 Arena Brawl coins."))
 				Coordinator.addTransacation("Arena Brawl", 2250, 15000, new Date().toString());
 				
-				if(message.contains("Converted 100000 Arcade coins into 15000 Arena Brawl coins."))
 				Coordinator.addTransacation("Arena Brawl", 15000, 10000, new Date().toString());
 		}
 	}

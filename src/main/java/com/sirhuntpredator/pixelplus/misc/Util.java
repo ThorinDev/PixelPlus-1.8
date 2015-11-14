@@ -4,7 +4,7 @@ import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
 
 public class Util {
 
-		public static String getGameNameFromSBName(String name)
+		public static String removeFormattingCodes(String name)
 		{
 			String game = name;
 			

@@ -12,7 +12,7 @@ public class Listener {
 
 	public static final String MESSAGE_PURCHASE_1 = "You purchased";
 	@SubscribeEvent
-	public static void chat(ClientChatReceivedEvent event)
+	public void chat(ClientChatReceivedEvent event)
 	{
 		String message = event.message.getUnformattedTextForChat();
 		String game2 = "";
@@ -20,7 +20,7 @@ public class Listener {
 		String level = "";
 		int cost = 0;
 
-		game2 = Util.getGameNameFromSBName(ScoreboardUtils.returnSbName(ScoreboardUtils.returnSbInSidebar()));
+		game2 = Util.removeFormattingCodes(ScoreboardUtils.returnSbName(ScoreboardUtils.returnSbInSidebar()));
 		
 		//Games that use this message:
 		//BSG, 

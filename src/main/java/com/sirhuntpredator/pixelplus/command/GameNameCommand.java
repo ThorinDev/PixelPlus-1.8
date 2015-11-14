@@ -51,7 +51,7 @@ public int getRequiredPermissionLevel() {
 				}
 			}
 	*/
-		new ChatMessageComposer(Util.getProperlyCapitalizedGameName(Util.getGameNameFromSBName(ScoreboardUtils.returnSbName(ScoreboardUtils.returnSbInSidebar())))).send();
+		new ChatMessageComposer(Util.getProperlyCapitalizedGameName(Util.removeFormattingCodes(ScoreboardUtils.returnSbName(ScoreboardUtils.returnSbInSidebar())))).send();
 		
 	}
 

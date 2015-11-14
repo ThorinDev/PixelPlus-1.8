@@ -26,8 +26,10 @@ import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
+import com.sirhuntpredator.pixelplus.hud.HealthHud;
 import com.sirhuntpredator.pixelplus.hud.HudRegistry;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
+import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
 public class PixelPlus
@@ -44,6 +46,8 @@ public class PixelPlus
 	{
 		instance = this;
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.purchaselog.Listener());
 		FMLCommonHandler.instance().bus().register(this);
 		
 	}
@@ -64,6 +68,7 @@ public class PixelPlus
     	this.LOGGER = LogManager.getLogger("PixelPlus");
     	HudRegistry.registerHud(new BasicInfoHud());
     	HudRegistry.registerHud(new EffectHud());
+    	HudRegistry.registerHud(new HealthHud());
     	
         
     }
@@ -109,6 +114,7 @@ public class PixelPlus
 				if ((!Minecraft.getMinecraft().gameSettings.showDebugInfo) && (Minecraft.getMinecraft().inGameHasFocus) && (!(Minecraft.getMinecraft().currentScreen instanceof GuiChat))) {
 				 new BasicInfoHud().render();	
 				 new EffectHud().render();
+				 new HealthHud().render();
 				 if(!areBasicsAdded){
 					 GuiUtils.addBasicsToList(Minecraft.getMinecraft().thePlayer.getName());
 					 areBasicsAdded = true;
