@@ -9,7 +9,7 @@ public class ScoreboardUtils {
 
 	public static ScoreObjective returnSbInSidebar()
 	{
-		return Minecraft.getMinecraft().theWorld.getScoreboard().getObjectiveInDisplaySlot(2);
+		return Minecraft.getMinecraft().theWorld.getScoreboard().getObjectiveInDisplaySlot(1);
 	}
 	public static String returnSbName(ScoreObjective sb)
 	{

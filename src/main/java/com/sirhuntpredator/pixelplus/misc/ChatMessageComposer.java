@@ -130,10 +130,10 @@ public class ChatMessageComposer {
     }
     
     static {
-        IChatComponent name1 = new ChatComponentText("Chroma");
-        IChatComponent name2 = new ChatComponentText("Pixel");
+        IChatComponent name1 = new ChatComponentText("Pixel");
+        IChatComponent name2 = new ChatComponentText("Plus");
         name1.getChatStyle().setColor(EnumChatFormatting.GREEN);
-        name2.getChatStyle().setColor(EnumChatFormatting.AQUA);
+        name2.getChatStyle().setColor(EnumChatFormatting.LIGHT_PURPLE);
         
         CHAT_PREFIX = new ChatComponentText("[").appendSibling(name1).appendSibling(name2).appendSibling(new ChatComponentText("] "));
     }

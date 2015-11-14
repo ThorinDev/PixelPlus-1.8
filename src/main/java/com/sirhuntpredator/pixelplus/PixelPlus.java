@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.sirhuntpredator.pixelplus.command.AddTransacationCommand;
 import com.sirhuntpredator.pixelplus.command.CplayCommand;
+import com.sirhuntpredator.pixelplus.command.GameNameCommand;
 import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
@@ -55,12 +56,12 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new HudStateSetCommand());
 		ClientCommandHandler.instance.registerCommand(new AddTransacationCommand());
 		ClientCommandHandler.instance.registerCommand(new ViewTransacationsCommand());
-		
+		ClientCommandHandler.instance.registerCommand(new GameNameCommand());
 	}
     @EventHandler
     public void init(FMLInitializationEvent event) throws Exception
     {
-    	this.LOGGER = LogManager.getLogger("ChromaPixel");
+    	this.LOGGER = LogManager.getLogger("PixelPlus");
     	HudRegistry.registerHud(new BasicInfoHud());
     	HudRegistry.registerHud(new EffectHud());
     	
@@ -92,6 +93,7 @@ public class PixelPlus
 		}
 		catch(Exception e) {
 			logWarn("An exception occured in onClientTick(). Stacktrace below.");
+			
 			e.printStackTrace();
 		}
 	}
@@ -107,9 +109,9 @@ public class PixelPlus
 				if ((!Minecraft.getMinecraft().gameSettings.showDebugInfo) && (Minecraft.getMinecraft().inGameHasFocus) && (!(Minecraft.getMinecraft().currentScreen instanceof GuiChat))) {
 				 new BasicInfoHud().render();	
 				 new EffectHud().render();
-				 if(!isBasicsAdded){
+				 if(!areBasicsAdded){
 					 GuiUtils.addBasicsToList(Minecraft.getMinecraft().thePlayer.getName());
-					 isBasicsAdded = true;
+					 areBasicsAdded = true;
 				 }
 				}
 			}

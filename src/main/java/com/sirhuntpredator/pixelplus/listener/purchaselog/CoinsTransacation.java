@@ -4,7 +4,7 @@ public class CoinsTransacation {
 
 	public int cost = 0;
 	public String timestamp = "";
-	public String purchase = 0;
+	public String purchase = "";
 	public String game = "";
 	
 	public CoinsTransacation(String game, int cost, String timestamp,
