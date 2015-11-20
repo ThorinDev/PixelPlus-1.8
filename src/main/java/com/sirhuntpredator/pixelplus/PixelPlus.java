@@ -61,10 +61,12 @@ public class PixelPlus
 	}
 	public static void stuff()
 	{
-		List<ModContainer> l = Loader.instance().getActiveModList();
-		for (ModContainer modContainer : l) {
+		List<ModContainer> b = Loader.instance().getActiveModList();
+		for (ModContainer modContainer : b) {
+			String l = modContainer.getName();
 			if(!l.contains("Minecraft Coder Pack") && !l.contains("Forge Mod Loader") && !l.contains("Minecraft Forge"))
 			{
+				
 				modlist.add(modContainer.getName());
 			}
 			else
