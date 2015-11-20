@@ -45,17 +45,17 @@ public class HealthHud extends HudBase {
 		{
 			state = "Full";
 		}
-		else if(hp < 20F && hp > 12)
+		else if(hp < 20F && hp >= 12)
 		{
 			state = EnumChatFormatting.GREEN + "High";
 		}
-		else if(hp < 12 && hp > 8)
+		else if(hp < 12 && hp >= 8)
 		{
 			state = EnumChatFormatting.YELLOW + "Medium";
 		}
 		else
 		{
-			state = EnumChatFormatting.BOLD +""+ EnumChatFormatting.DARK_RED + "Low";
+			state = EnumChatFormatting.DARK_RED +""+ EnumChatFormatting.BOLD + "Low";
 		}
 		e.add("Health - " + state);
 		return e;

@@ -1,12 +1,17 @@
 package com.sirhuntpredator.pixelplus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -22,6 +27,7 @@ import com.sirhuntpredator.pixelplus.command.CplayCommand;
 import com.sirhuntpredator.pixelplus.command.GameNameCommand;
 import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
+import com.sirhuntpredator.pixelplus.command.ModlistCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
@@ -41,15 +47,31 @@ public class PixelPlus
 	private Logger LOGGER;
 	private static PixelPlus instance;
     private static boolean areBasicsAdded = false;
+    public static List<String> modlist = new ArrayList<String>();
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
 		instance = this;
-		MinecraftForge.EVENT_BUS.register(this);
+
 		MinecraftForge.EVENT_BUS.register(new Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.purchaselog.Listener());
 		FMLCommonHandler.instance().bus().register(this);
+		MinecraftForge.EVENT_BUS.register(this);
 		
+	}
+	public static void stuff()
+	{
+		List<ModContainer> l = Loader.instance().getActiveModList();
+		for (ModContainer modContainer : l) {
+			if(!l.contains("Minecraft Coder Pack") && !l.contains("Forge Mod Loader") && !l.contains("Minecraft Forge"))
+			{
+				modlist.add(modContainer.getName());
+			}
+			else
+			{
+				
+			}
+		}
 	}
 	@EventHandler
 	public void init(FMLPostInitializationEvent event)
@@ -61,6 +83,9 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new AddTransacationCommand());
 		ClientCommandHandler.instance.registerCommand(new ViewTransacationsCommand());
 		ClientCommandHandler.instance.registerCommand(new GameNameCommand());
+		ClientCommandHandler.instance.registerCommand(new ModlistCommand());
+		stuff();
+		
 	}
     @EventHandler
     public void init(FMLInitializationEvent event) throws Exception
