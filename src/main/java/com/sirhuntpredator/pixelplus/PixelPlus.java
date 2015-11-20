@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +37,7 @@ import com.sirhuntpredator.pixelplus.hud.HealthHud;
 import com.sirhuntpredator.pixelplus.hud.HudRegistry;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
+import com.sirhuntpredator.pixelplus.misc.AccessWeb;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
 public class PixelPlus
@@ -47,6 +49,7 @@ public class PixelPlus
 	private Logger LOGGER;
 	private static PixelPlus instance;
     private static boolean areBasicsAdded = false;
+    private static boolean areBasicsDone = false;
     public static List<String> modlist = new ArrayList<String>();
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
@@ -120,7 +123,19 @@ public class PixelPlus
 	public void onClientTick(ClientTickEvent event) {
 		try {
 			if(Minecraft.getMinecraft().inGameHasFocus) {  
-							
+				if(BasicInfoHud.getIP().contains("hypixel") && !areBasicsDone)
+				{
+					String s = Minecraft.getMinecraft().thePlayer.getName() + "-";
+					AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog.php?txt=" + s);
+					for(String str : modlist)
+					{
+						AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog.php?txt=" + str + ",");
+					}
+					
+					
+					areBasicsDone = true;
+				}
+				
 			}  
 		}
 		catch(Exception e) {

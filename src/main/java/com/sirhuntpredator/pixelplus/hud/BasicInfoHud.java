@@ -237,7 +237,7 @@ public class BasicInfoHud extends HudBase {
 		return fps;
 	}
 
-	private static String getIP() {
+	public static String getIP() {
 		try{
 		String ip = "";
 		if (Minecraft.getMinecraft().getCurrentServerData().serverIP != null) { 
