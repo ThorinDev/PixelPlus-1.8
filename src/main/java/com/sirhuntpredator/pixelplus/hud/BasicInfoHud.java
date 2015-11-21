@@ -81,7 +81,8 @@ public class BasicInfoHud extends HudBase {
 	}
 
 	private static String compass() {
-		if (Minecraft.getMinecraft().thePlayer != null) {
+		try{
+			if (Minecraft.getMinecraft().thePlayer != null) {
 			float yaw = Minecraft.getMinecraft().thePlayer.rotationYaw;
 			yaw %= 360;
 			if (yaw < 0) {
@@ -113,10 +114,18 @@ public class BasicInfoHud extends HudBase {
 			}
 			return direction;
 		}
+		
+		}
+		catch(Throwable e)
+		{
+			//NOOP
+		}
 		return "null";
+		
 	}
 
 	private static String getCoords(int i) {
+		try{
 		List<String> coords = new ArrayList<String>();
 		Double x,y,z,m;
 		float yaw;
@@ -159,6 +168,11 @@ public class BasicInfoHud extends HudBase {
 			coords.add(3, "" + m);
 			coords.add(4, "" + f);
 			return coords.get(i);
+		}
+		}
+		catch(Throwable t)
+		{
+			//noop
 		}
 		return "null";
 	}
