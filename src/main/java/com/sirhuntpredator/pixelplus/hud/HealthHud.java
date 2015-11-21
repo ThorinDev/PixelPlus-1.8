@@ -41,7 +41,7 @@ public class HealthHud extends HudBase {
 		ArrayList<String> e = new ArrayList<String>();
 		float hp = Minecraft.getMinecraft().thePlayer.getHealth();
 		String state = "";
-		if(hp == 20F)
+		if(hp >= 20F)
 		{
 			state = "Full";
 		}
