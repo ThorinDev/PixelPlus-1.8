@@ -11,13 +11,14 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class HealthHud extends HudBase {
 
-
+	FontRenderer fontRendererObj = FMLClientHandler.instance().getClient().fontRendererObj;
+	boolean done = false;
 	@Override
 	public int id() {
 		// TODO Auto-generated method stub
 		return 2;
 	}
-
+	
 	@Override
 	public void render() throws Exception {
 		
@@ -28,8 +29,9 @@ public class HealthHud extends HudBase {
 		
 		 
 		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat))) {
-			FontRenderer fontRendererObj = FMLClientHandler.instance().getClient().fontRendererObj;
-					fontRendererObj.drawString((String)display.get(0), 450, 20, 0xffffff);
+			
+			
+			fontRendererObj.drawString((String)display.get(0), 450, 20, 0xffffff);
 					
 				
 			}

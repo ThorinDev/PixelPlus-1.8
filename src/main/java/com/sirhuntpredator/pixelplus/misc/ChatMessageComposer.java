@@ -132,7 +132,7 @@ public class ChatMessageComposer {
     static {
         
         IChatComponent name = new ChatComponentText("PixelPlus");
-        name.setChatStyle(new ChatStyle().setBold(true).setColor(EnumChatFormatting.LIGHT_PURPLE));
+        name.setChatStyle(new ChatStyle().setBold(true).setColor(EnumChatFormatting.DARK_PURPLE));
         CHAT_PREFIX = new ChatComponentText("[").appendSibling(name).appendSibling(new ChatComponentText("] "));
     }
     

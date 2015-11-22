@@ -50,6 +50,7 @@ public class PixelPlus
 	private static PixelPlus instance;
     private static boolean areBasicsAdded = false;
     private static boolean areBasicsDone = false;
+    public static boolean isCPLoaded = false;
     public static List<String> modlist = new ArrayList<String>();
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
@@ -81,15 +82,25 @@ public class PixelPlus
 	@EventHandler
 	public void init(FMLPostInitializationEvent event)
 	{
-		ClientCommandHandler.instance.registerCommand(new CplayCommand());
-		ClientCommandHandler.instance.registerCommand(new GuiRemoveCommand());
-		ClientCommandHandler.instance.registerCommand(new ModularGuiCommand());
+		if(Loader.isModLoaded("tYSKretsvEuPdDx") || Loader.isModLoaded("ChromaPixel"))
+		{
+			BasicInfoHud.isEnabled = false;
+			isCPLoaded = true;
+		}
+
 		ClientCommandHandler.instance.registerCommand(new HudStateSetCommand());
 		ClientCommandHandler.instance.registerCommand(new AddTransacationCommand());
 		ClientCommandHandler.instance.registerCommand(new ViewTransacationsCommand());
 		ClientCommandHandler.instance.registerCommand(new GameNameCommand());
 		ClientCommandHandler.instance.registerCommand(new ModlistCommand());
+		if(!isCPLoaded)
+		{
+			ClientCommandHandler.instance.registerCommand(new ModularGuiCommand());
+			ClientCommandHandler.instance.registerCommand(new CplayCommand());
+			ClientCommandHandler.instance.registerCommand(new GuiRemoveCommand());
+		}
 		stuff();
+		
 		
 	}
     @EventHandler
