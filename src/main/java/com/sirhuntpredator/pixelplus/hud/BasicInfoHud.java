@@ -45,7 +45,7 @@ public class BasicInfoHud extends HudBase {
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 		int w = 1;
 		int h = 15;
-		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat))) {
+		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat)) && isEnabled) {
 			FontRenderer fontRendererObj = FMLClientHandler.instance().getClient().fontRendererObj;
 			for (int i = 0; i < display.size(); i++) {
 				if ((display.get(i) != null) && (!((String)display.get(i)).isEmpty())) {
