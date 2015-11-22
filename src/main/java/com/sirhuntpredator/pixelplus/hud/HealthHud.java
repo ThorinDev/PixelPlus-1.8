@@ -31,7 +31,7 @@ public class HealthHud extends HudBase {
 		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat))) {
 			
 			
-			fontRendererObj.drawString((String)display.get(0), 450, 20, 0xffffff);
+			fontRendererObj.drawString((String)display.get(0), res.getScaledWidth() / 2 - 25, 20, 0xffffff);
 					
 				
 			}
