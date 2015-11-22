@@ -16,9 +16,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +38,7 @@ import com.sirhuntpredator.pixelplus.hud.HudRegistry;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
 import com.sirhuntpredator.pixelplus.misc.AccessWeb;
+import com.sirhuntpredator.pixelplus.misc.KeyBinder;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
 public class PixelPlus
@@ -77,6 +78,17 @@ public class PixelPlus
 			{
 				
 			}
+		}
+	}
+	@SubscribeEvent
+	public void onKeyInput(KeyInputEvent event) {
+		try 
+		{
+			KeyBinder.doKeybindings(event);
+		}
+		catch(Exception e)
+		{
+			//NOOP
 		}
 	}
 	@EventHandler
