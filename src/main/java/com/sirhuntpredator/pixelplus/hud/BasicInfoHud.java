@@ -16,9 +16,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-import com.sirhuntpredator.pixelplus.PixelPlus;
 import com.sirhuntpredator.pixelplus.hud.modular.Element;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
+import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
 import com.sirhuntpredator.pixelplus.misc.UUIDFetcher;
 import com.sirhuntpredator.pixelplus.misc.UuidHelper;
 
@@ -118,7 +118,7 @@ public class BasicInfoHud extends HudBase {
 		}
 		catch(Throwable e)
 		{
-			//NOOP
+			new ChatMessageComposer(t.toString()).send();
 		}
 		return "null";
 		
@@ -172,7 +172,7 @@ public class BasicInfoHud extends HudBase {
 		}
 		catch(Throwable t)
 		{
-			//noop
+			new ChatMessageComposer(t.toString()).send();
 		}
 		return "null";
 	}
