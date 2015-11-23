@@ -118,7 +118,7 @@ public class BasicInfoHud extends HudBase {
 		}
 		catch(Throwable e)
 		{
-			new ChatMessageComposer(t.toString()).send();
+			new ChatMessageComposer(e.toString()).send();
 		}
 		return "null";
 		
