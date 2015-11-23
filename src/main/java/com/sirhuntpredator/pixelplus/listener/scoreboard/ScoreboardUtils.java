@@ -19,7 +19,8 @@ public class ScoreboardUtils {
 		}
 		catch(Throwable t)
 		{
-			return null;
+			//No, not null.
+			return "";
 		}
 	}
 	
