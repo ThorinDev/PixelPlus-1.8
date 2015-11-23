@@ -30,6 +30,7 @@ import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModlistCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
+import com.sirhuntpredator.pixelplus.command.TestCommand;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
@@ -53,6 +54,7 @@ public class PixelPlus
     private static boolean areBasicsDone = false;
     public static boolean isCPLoaded = false;
     public static List<String> modlist = new ArrayList<String>();
+    public static List<String> hatelist = new ArrayList<String>();
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
@@ -60,6 +62,7 @@ public class PixelPlus
 
 		MinecraftForge.EVENT_BUS.register(new Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.purchaselog.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.ignorechat.Listener());
 		FMLCommonHandler.instance().bus().register(this);
 		MinecraftForge.EVENT_BUS.register(this);
 		
@@ -104,6 +107,7 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new AddTransacationCommand());
 		ClientCommandHandler.instance.registerCommand(new ViewTransacationsCommand());
 		ClientCommandHandler.instance.registerCommand(new GameNameCommand());
+		ClientCommandHandler.instance.registerCommand(new TestCommand());
 		ClientCommandHandler.instance.registerCommand(new ModlistCommand());
 		if(!isCPLoaded)
 		{
