@@ -13,7 +13,14 @@ public class ScoreboardUtils {
 	}
 	public static String returnSbName(ScoreObjective sb)
 	{
-		return sb.getDisplayName();
+		try
+		{
+			return sb.getDisplayName();
+		}
+		catch(Throwable t)
+		{
+			return null;
+		}
 	}
 	
 
