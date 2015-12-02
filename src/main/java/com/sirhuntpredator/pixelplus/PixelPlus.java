@@ -5,8 +5,6 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Timer;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -22,7 +20,6 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +30,6 @@ import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModlistCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
-import com.sirhuntpredator.pixelplus.command.ReflectTestCommand;
 import com.sirhuntpredator.pixelplus.command.TestCommand;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
