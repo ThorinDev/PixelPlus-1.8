@@ -26,8 +26,8 @@ public class BasicInfoHud extends HudBase {
 
 	public static Boolean isEnabled = /*ChromaPixelConfig.showInfoHUD;*/ true;
 	public static Boolean showCoords = /*ChromaPixelConfig.showAdvCoords;*/ true;
-	public static String mainColor = /*ChromaPixelConfig.mainColor.substring(0, 2)*/ EnumChatFormatting.BLACK + "";
-	public static String itemColor = /*ChromaPixelConfig.itemColor.substring(0, 2)*/EnumChatFormatting.BLACK + "";
+	public static String mainColor = /*ChromaPixelConfig.mainColor.substring(0, 2)*/ EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD;
+	public static String itemColor = /*ChromaPixelConfig.itemColor.substring(0, 2)*/EnumChatFormatting.LIGHT_PURPLE + "";
 	public static List<String> display = new ArrayList<String>();
 	public static UUID uuidd;
 	public static boolean gotUUID = false;
@@ -43,9 +43,9 @@ public class BasicInfoHud extends HudBase {
 		ArrayList<String> display = renderlist();
 		Minecraft mc = FMLClientHandler.instance().getClient();
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-		int w = 1;
+		int w = 5;
 		int h = 15;
-		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat)) && isEnabled) {
+		if (isEnabled) {
 			FontRenderer fontRendererObj = FMLClientHandler.instance().getClient().fontRendererObj;
 			for (int i = 0; i < display.size(); i++) {
 				if ((display.get(i) != null) && (!((String)display.get(i)).isEmpty())) {
@@ -184,46 +184,46 @@ public class BasicInfoHud extends HudBase {
 		{
 			if(e.value == "ping")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + " " + getPing());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + " " + getPing());
 			}
 			else if(e.value == "fps")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + " " + getFPS());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + " " + getFPS());
 			}
 			else if(e.value == "facing")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + " " + compass());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + " " + compass());
 			}
 			else if(e.value == "players")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor  +" " + getPlayers());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor  +" " + getPlayers());
 			}
 			else if(e.value == "ip")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + " " + getIP());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + " " + getIP());
 			}
 			else if(e.value == "time")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + " " + getTime());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + " " + getTime());
 			}
 			else if(e.value == "ign")
 			{
-				display.add(EnumChatFormatting.GRAY + "[" + mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + " " + Minecraft.getMinecraft().thePlayer.getName());
+				display.add(EnumChatFormatting.GRAY  + mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + " " + Minecraft.getMinecraft().thePlayer.getName());
 			}
 			else
 			{
-				display.add(EnumChatFormatting.GRAY + "[" +mainColor + e.element + EnumChatFormatting.GRAY + "]" + itemColor + e.value);
+				display.add(EnumChatFormatting.GRAY  +mainColor + e.element + EnumChatFormatting.GRAY + ">" + itemColor + e.value);
 			}
 			
 		}
 		if(showCoords) {
-			display.add(EnumChatFormatting.GRAY + "[" + mainColor + "X" + EnumChatFormatting.GRAY + "] " + itemColor + getCoords(0));
-			display.add(EnumChatFormatting.GRAY + "[" + mainColor + "Y" + EnumChatFormatting.GRAY + "] " + itemColor + getCoords(1));
-			display.add(EnumChatFormatting.GRAY + "[" + mainColor + "Z" + EnumChatFormatting.GRAY + "] " + itemColor + getCoords(2));
-			display.add(EnumChatFormatting.GRAY + "[" + mainColor + "F" + EnumChatFormatting.GRAY + "] " + itemColor + getCoords(3) + EnumChatFormatting.GRAY + " [" + mainColor + getCoords(4) + EnumChatFormatting.GRAY + "]");
+			display.add(EnumChatFormatting.GRAY  + mainColor + "X" + EnumChatFormatting.GRAY + "> " + itemColor + getCoords(0));
+			display.add(EnumChatFormatting.GRAY  + mainColor + "Y" + EnumChatFormatting.GRAY + "> " + itemColor + getCoords(1));
+			display.add(EnumChatFormatting.GRAY  + mainColor + "Z" + EnumChatFormatting.GRAY + "> " + itemColor + getCoords(2));
+			display.add(EnumChatFormatting.GRAY  + mainColor + "F" + EnumChatFormatting.GRAY + "> " + itemColor + getCoords(3) + EnumChatFormatting.GRAY + " [" + mainColor + getCoords(4) + EnumChatFormatting.GRAY + "]");
 		}
 		
-		//display.add(EnumChatFormatting.GRAY + "[" + mainColor + "IGN" + EnumChatFormatting.GRAY + "] " + EnumChatFormatting.DARK_GREEN + " [" + EnumChatFormatting.GREEN + "CP" + EnumChatFormatting.AQUA + "Admin" + EnumChatFormatting.DARK_GREEN + "] "  + EnumChatFormatting.GREEN + "[VIP] " + itemColor + Minecraft.getMinecraft().thePlayer.getName());
+		//display.add(EnumChatFormatting.GRAY  + mainColor + "IGN" + EnumChatFormatting.GRAY + "> " + EnumChatFormatting.DARK_GREEN + " [" + EnumChatFormatting.GREEN + "CP" + EnumChatFormatting.AQUA + "Admin" + EnumChatFormatting.DARK_GREEN + "> "  + EnumChatFormatting.GREEN + "[VIP] " + itemColor + Minecraft.getMinecraft().thePlayer.getName());
 		return display;
 	}
 	@Override
