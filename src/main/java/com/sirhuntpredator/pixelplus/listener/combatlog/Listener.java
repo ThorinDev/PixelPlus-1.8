@@ -48,7 +48,7 @@ public class Listener {
 		{
 			int distance = Coordinator.getDistance(e.entityLiving);
 			CombatTracker cb = e.entityLiving.getCombatTracker();
-			CombatEntry combatentry = Coordinator.cbe(cb);
+			//CombatEntry combatentry = Coordinator.cbe(cb);
 			List combatEntries = Lists.newArrayList();
 			combatEntries = cb.combatEntries;
 	        CombatEntry combatentry1 = (CombatEntry)combatEntries.get(combatEntries.size() - 1);
