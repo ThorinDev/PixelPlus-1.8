@@ -31,6 +31,7 @@ import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModlistCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.command.TestCommand;
+import com.sirhuntpredator.pixelplus.command.ToggleCombatLog;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
@@ -119,6 +120,7 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new GameNameCommand());
 		ClientCommandHandler.instance.registerCommand(new TestCommand());
 		ClientCommandHandler.instance.registerCommand(new ModlistCommand());
+		ClientCommandHandler.instance.registerCommand(new ToggleCombatLog());
 		//ClientCommandHandler.instance.registerCommand(new ReflectTestCommand());
 		if(!isCPLoaded)
 		{
