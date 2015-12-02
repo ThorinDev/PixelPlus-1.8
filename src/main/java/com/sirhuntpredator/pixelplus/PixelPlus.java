@@ -5,6 +5,8 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Timer;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -20,6 +22,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +33,7 @@ import com.sirhuntpredator.pixelplus.command.GuiRemoveCommand;
 import com.sirhuntpredator.pixelplus.command.HudStateSetCommand;
 import com.sirhuntpredator.pixelplus.command.ModlistCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
+import com.sirhuntpredator.pixelplus.command.ReflectTestCommand;
 import com.sirhuntpredator.pixelplus.command.TestCommand;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
@@ -38,14 +42,16 @@ import com.sirhuntpredator.pixelplus.hud.HealthHud;
 import com.sirhuntpredator.pixelplus.hud.HudRegistry;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
+import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
 import com.sirhuntpredator.pixelplus.misc.AccessWeb;
 import com.sirhuntpredator.pixelplus.misc.KeyBinder;
+import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "0.1";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
@@ -55,6 +61,12 @@ public class PixelPlus
     public static boolean isCPLoaded = false;
     public static List<String> modlist = new ArrayList<String>();
     public static List<String> hatelist = new ArrayList<String>();
+    public boolean test = false;
+  
+    public static void reflect()
+    {
+    	//ReflectionUtils.reflectSetField(Minecraft.class, Minecraft.getMinecraft(), "timer", new Timer(5.0F));
+    }
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
@@ -63,7 +75,9 @@ public class PixelPlus
 		MinecraftForge.EVENT_BUS.register(new Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.purchaselog.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.ignorechat.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.combatlog.Listener());
 		FMLCommonHandler.instance().bus().register(this);
+		FMLCommonHandler.instance().bus().register(new com.sirhuntpredator.pixelplus.listener.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(this);
 		
 	}
@@ -109,6 +123,7 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new GameNameCommand());
 		ClientCommandHandler.instance.registerCommand(new TestCommand());
 		ClientCommandHandler.instance.registerCommand(new ModlistCommand());
+		//ClientCommandHandler.instance.registerCommand(new ReflectTestCommand());
 		if(!isCPLoaded)
 		{
 			ClientCommandHandler.instance.registerCommand(new ModularGuiCommand());
@@ -126,6 +141,7 @@ public class PixelPlus
     	HudRegistry.registerHud(new BasicInfoHud());
     	HudRegistry.registerHud(new EffectHud());
     	HudRegistry.registerHud(new HealthHud());
+    	reflect();
     	
         
     }
@@ -188,8 +204,25 @@ public class PixelPlus
 					 GuiUtils.addBasicsToList(Minecraft.getMinecraft().thePlayer.getName());
 					 areBasicsAdded = true;
 				 }
+				 
+				 
+				 
 				}
 			}
+			
+			if(test)
+			{
+				ScoreboardUtils.returnSbInSidebar().setDisplayName("§e§lDEEZ NUTS");
+				String fakeFps = "696969";
+				String fakedFps = Minecraft.getMinecraft().debug.replaceAll(Minecraft.getMinecraft().debug.substring(0, Minecraft.getMinecraft().debug.indexOf(' ')), fakeFps);
+				ReflectionUtils.reflectSetField(Minecraft.class, Minecraft.getMinecraft(), "debug", fakedFps);
+			}
+			else
+			{
+				//System.out.println( ScoreboardUtils.returnSbInSidebar().getDisplayName());
+			}
+			
+			
 		} catch(Exception e) {
 			logWarn("An exception occured in onRenderTick(). Stacktrace below.");
 			e.printStackTrace();

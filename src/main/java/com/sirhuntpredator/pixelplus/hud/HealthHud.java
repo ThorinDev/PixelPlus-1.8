@@ -13,6 +13,7 @@ public class HealthHud extends HudBase {
 
 	FontRenderer fontRendererObj = FMLClientHandler.instance().getClient().fontRendererObj;
 	boolean done = false;
+	public boolean enabled = true;
 	@Override
 	public int id() {
 		// TODO Auto-generated method stub
@@ -28,7 +29,8 @@ public class HealthHud extends HudBase {
 
 		
 		 
-		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat))) {
+		
+		if ((!mc.gameSettings.showDebugInfo) && (mc.inGameHasFocus) && (!(mc.currentScreen instanceof GuiChat)) && enabled ) {
 			
 			
 			fontRendererObj.drawString((String)display.get(0), res.getScaledWidth() / 2 - 25, 20, 0xffffff);
