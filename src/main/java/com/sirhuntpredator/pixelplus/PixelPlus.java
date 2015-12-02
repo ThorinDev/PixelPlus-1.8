@@ -47,7 +47,7 @@ import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.1";
+    public static final String VERSION = "0.1b";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
