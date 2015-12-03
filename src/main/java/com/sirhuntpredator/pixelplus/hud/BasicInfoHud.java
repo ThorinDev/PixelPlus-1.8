@@ -130,10 +130,10 @@ public class BasicInfoHud extends HudBase {
 				yaw += 360;
 			}
 			yaw = yaw / 90;
-			//DecimalFormat df = new DecimalFormat("#.#");
+			DecimalFormat df = new DecimalFormat("#.#");
 			Double m;
 			String direction;
-			m = Double.valueOf(yaw);
+			m = (double) yaw;
 			if (m <= 0.2) {
 				direction = "S";
 			} else if (m >= 0.3 && m <= 0.7) {
@@ -183,7 +183,7 @@ public class BasicInfoHud extends HudBase {
 			}
 			coords.clear();
 			yaw = yaw / 90;
-			m = Double.valueOf(yaw); //PROBLEMATIC
+			m = Double.valueOf(String.format("%.1f", yaw));
 			if (m <= 0.2) {
 				f = "Z+";
 			} else if (m >= 0.3 && m <= 0.7) {
@@ -203,9 +203,9 @@ public class BasicInfoHud extends HudBase {
 			} else {
 				f = "Z+";
 			}
-			coords.add(0, x.toString());
-			coords.add(1, y.toString());
-			coords.add(2, z.toString());
+			coords.add(0, String.format("%.1f", x));
+			coords.add(1, String.format("%.1f", y));
+			coords.add(2, String.format("%.1f", z));
 			coords.add(3, "" + m);
 			coords.add(4, "" + f);
 			return coords.get(i);
@@ -213,7 +213,7 @@ public class BasicInfoHud extends HudBase {
 		}
 		catch(Throwable t)
 		{
-			new ChatMessageComposer(t.toString() + " at getCoords()").send();
+			new ChatMessageComposer(t.toString()  +  " at getCoords()").send();
 		}
 		return "null";
 	}
