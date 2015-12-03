@@ -57,7 +57,7 @@ public class Listener {
 			
 	      if (Coordinator.enabled && e.entity instanceof EntityPlayer && !e.entity.worldObj.isRemote)
 	      {
-	    	  new ChatMessageComposer("Attacked by " + attacker +  " for " + e.ammount + " hitpoints from " + distance + " blocks away.").send();
+	    	  new ChatMessageComposer("Attacked by " + attacker +  " from " + distance + " blocks away.").send();
 	      }
 	    }
 	    catch (Exception ex) 
