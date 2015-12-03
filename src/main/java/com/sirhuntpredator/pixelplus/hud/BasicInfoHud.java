@@ -9,13 +9,13 @@ import java.util.UUID;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.util.UUIDTypeAdapter;
 import com.sirhuntpredator.pixelplus.hud.modular.Element;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
@@ -273,35 +273,24 @@ public class BasicInfoHud extends HudBase {
 	{
 		
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		if (player == null) {
-			return -1;
-		}
-		
-		UUID ud = uuidd;
-		if(!gotUUID)
-		{
-			ud = getUUID();
-		}
-		else
-		{
-			ud = uuidd;
-		}
-		
-		NetworkPlayerInfo npi;
-		npi = Minecraft.getMinecraft().getNetHandler().getPlayerInfo(ud);
-	
-			if(npi != null)
-			{
-				return npi.getResponseTime();
-			}
-			else
-			{
-				npi = new NetworkPlayerInfo(Minecraft.getMinecraft().thePlayer.getGameProfile());
-				
-			}
-			return npi.getResponseTime();	
+	    if (player == null) {
+	      return Integer.parseInt("" + Minecraft.getMinecraft().getCurrentServerData().pingToServer);
+	    }
+	    if (Minecraft.getMinecraft().getNetHandler().getPlayerInfo(UUID.fromString(getUUID2())) != null) {
+	      return Minecraft.getMinecraft().getNetHandler().getPlayerInfo(UUID.fromString(getUUID2())).getResponseTime();
+	    }
+	    return Integer.parseInt("" + Minecraft.getMinecraft().getCurrentServerData().pingToServer);	
 		
 
 	}
+	 public static String getUsernameFormUUID(String uuid)
+	  {
+	    return Minecraft.getMinecraft().getSessionService().fillProfileProperties(new GameProfile(UUIDTypeAdapter.fromString(uuid), (String)null), false).getName();
+	  }
+	  
+	  public static String getUUID2()
+	  {
+	    return Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString();
+	  }
 
 }
