@@ -193,9 +193,9 @@ public class BasicInfoHud extends HudBase {
 			} else {
 				f = "Z+";
 			}
-			coords.add(0, df.format(x));
-			coords.add(1, df.format(y));
-			coords.add(2, df.format(z));
+			coords.add(0, x.toString());
+			coords.add(1, y.toString());
+			coords.add(2, z.toString());
 			coords.add(3, "" + m);
 			coords.add(4, "" + f);
 			return coords.get(i);
