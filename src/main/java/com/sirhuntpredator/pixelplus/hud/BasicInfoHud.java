@@ -161,7 +161,7 @@ public class BasicInfoHud extends HudBase {
 		Double x,y,z,m;
 		float yaw;
 		String f;
-		DecimalFormat df = new DecimalFormat("#.#");
+		//DecimalFormat df = new DecimalFormat("#.#");
 		if(Minecraft.getMinecraft().thePlayer != null) {
 			x = Minecraft.getMinecraft().thePlayer.posX;
 			y = Minecraft.getMinecraft().thePlayer.posY;
@@ -173,7 +173,7 @@ public class BasicInfoHud extends HudBase {
 			}
 			coords.clear();
 			yaw = yaw / 90;
-			m = Double.valueOf(df.format(yaw));
+			m = Double.valueOf(yaw); //PROBLEMATIC
 			if (m <= 0.2) {
 				f = "Z+";
 			} else if (m >= 0.3 && m <= 0.7) {
