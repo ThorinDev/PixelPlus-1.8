@@ -71,6 +71,6 @@ processResources
 
 jar{
 manifest{
-attributes 'FMLATT': 'PixelPlus_at.cfg'
+attributes 'FMLAT': 'PixelPlus_at.cfg'
 }
 }
