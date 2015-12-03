@@ -50,7 +50,6 @@ public class Listener {
 			CombatTracker cb = e.entityLiving.getCombatTracker();
 			//CombatEntry combatentry = Coordinator.cbe(cb);
 			List combatEntries = Lists.newArrayList();
-			//combatEntries = cb.combatEntries;
 			combatEntries = ReflectionHelper.getPrivateValue(CombatTracker.class, cb, "combatEntries", "field_94556_a");
 	        CombatEntry combatentry1 = (CombatEntry)combatEntries.get(combatEntries.size() - 1);
 	        IChatComponent ichatcomponent = combatentry1.func_151522_h();
