@@ -57,22 +57,53 @@ public class BasicInfoHud extends HudBase {
 	}
 	private static int getPlayers()
 	{
-		/*System.out.println(Minecraft.getMinecraft().getCurrentServerData().toString());
 		
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		if (player == null) {
-			return -1;
-		}
-		NetHandlerPlayClient sendQueue = player.;
-		if (sendQueue == null) {
-			return -2;
-		}
-		List<GuiPlayerInfo> playerList = sendQueue.playerInfoList;
-		
-		if(playerList.size() > 0) {
-			return playerList.size();
-		}*/
-		//TODO
+	    if (player == null) {
+	      return Integer.parseInt("" + Minecraft.getMinecraft().getCurrentServerData().pingToServer);
+	    }
+	    if (Minecraft.getMinecraft().getCurrentServerData().playerList != null) {
+	     
+	    	boolean space1 = false;
+	    	boolean space2 = false;
+	    	boolean a = false;
+	    	boolean n = false;
+	    	boolean d = false;
+	    	int tracker = 0;
+	    	final String playerList = Minecraft.getMinecraft().getCurrentServerData().serverIP;
+	    	for(int i = 0; i < playerList.length(); i++)
+	    	{
+	    		switch(playerList.charAt(i))
+	    		{
+	    			case ' ':
+	    				if(!space1) space1 = true;
+	    				else if(!space2) space2 = true;
+	    				break;
+	    			case 'a':
+	    				if(!a) a = true;
+	    				break;
+	    			case 'n':
+	    				if(!n) n = true;
+	    				break;
+	    			case 'd':
+	    				if(!d) d = true;
+	    				break;
+	    			default:
+	    				break;
+	    		}
+	    		if(space1 && space2 && a && n && d)
+	    		{
+	    			space1 = false;
+	    			space2 = false;
+	    			a = false;
+	    			n = false;
+	    			d = false;
+	    			tracker++;
+	    		}
+	    	}
+	    	return tracker + 2;
+	    }
+	   	
 		return -3;
 	}
 
