@@ -110,7 +110,17 @@ public class BasicInfoHud extends HudBase {
 	private static String getTime() {
 		return new SimpleDateFormat("h:mm a").format(Calendar.getInstance().getTime());
 	}
-
+	public static int formatnumbertomakesense(String s)
+	{
+		try{
+			DecimalFormat df = new DecimalFormat("#.#");
+			return Integer.valueOf(df.format(s));
+			
+		}
+		catch(Exception e){}
+		return 0;
+	}
+	
 	private static String compass() {
 		try{
 			if (Minecraft.getMinecraft().thePlayer != null) {
@@ -120,10 +130,10 @@ public class BasicInfoHud extends HudBase {
 				yaw += 360;
 			}
 			yaw = yaw / 90;
-			DecimalFormat df = new DecimalFormat("#.#");
+			//DecimalFormat df = new DecimalFormat("#.#");
 			Double m;
 			String direction;
-			m = Double.valueOf(df.format(yaw));
+			m = Double.valueOf(yaw);
 			if (m <= 0.2) {
 				direction = "S";
 			} else if (m >= 0.3 && m <= 0.7) {
