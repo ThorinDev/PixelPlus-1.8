@@ -1,4 +1,4 @@
-package com.sirhuntpredator.pixelplus.listener.combatlog;
+package com.sirhuntpredator.pixelplus.features.combatlog;
 
 import java.text.NumberFormat;
 import java.util.List;

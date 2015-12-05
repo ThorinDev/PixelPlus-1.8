@@ -1,12 +1,12 @@
-package com.sirhuntpredator.pixelplus.listener.purchaselog;
+package com.sirhuntpredator.pixelplus.features.purchaselog;
 
 import java.util.Date;
 
-import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
-import com.sirhuntpredator.pixelplus.misc.Util;
-
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import com.sirhuntpredator.pixelplus.features.scoreboard.ScoreboardUtils;
+import com.sirhuntpredator.pixelplus.misc.Util;
 
 public class Listener {
 

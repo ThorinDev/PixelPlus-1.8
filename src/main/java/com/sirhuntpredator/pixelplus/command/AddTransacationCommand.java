@@ -6,7 +6,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 
-import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Coordinator;
+import com.sirhuntpredator.pixelplus.features.arcadeconversionlog.Coordinator;
 
 public class AddTransacationCommand extends CommandBase {
 

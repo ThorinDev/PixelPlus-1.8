@@ -1,8 +1,6 @@
-package com.sirhuntpredator.pixelplus.listener.purchaselog;
+package com.sirhuntpredator.pixelplus.features.purchaselog;
 
 import java.util.ArrayList;
-
-import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.ArcadeTransacation;
 
 public class Coordinator {
 

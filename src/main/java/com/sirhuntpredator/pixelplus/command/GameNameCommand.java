@@ -1,12 +1,12 @@
 package com.sirhuntpredator.pixelplus.command;
 
-import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
-import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
-import com.sirhuntpredator.pixelplus.misc.Util;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+
+import com.sirhuntpredator.pixelplus.features.scoreboard.ScoreboardUtils;
+import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
+import com.sirhuntpredator.pixelplus.misc.Util;
 
 public class GameNameCommand extends CommandBase{
 
@@ -39,7 +39,7 @@ public int getRequiredPermissionLevel() {
 		String game2 = "";
 		String delta = "";
 		
-			game = ScoreboardUtils.returnSbName(ScoreboardUtils.returnSbInSidebar());
+			game = ScoreboardUtils.returnOSbName(ScoreboardUtils.returnSbInSidebar());
 			game2 = game;
 			for (int i = 0; i < game.length(); i++) 
 			{

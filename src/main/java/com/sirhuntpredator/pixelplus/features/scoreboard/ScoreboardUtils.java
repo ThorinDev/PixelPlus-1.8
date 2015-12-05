@@ -1,4 +1,4 @@
-package com.sirhuntpredator.pixelplus.listener.scoreboard;
+package com.sirhuntpredator.pixelplus.features.scoreboard;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.scoreboard.ScoreObjective;

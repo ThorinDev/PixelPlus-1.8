@@ -24,15 +24,15 @@ public class ToggleCombatLog extends CommandBase {
 	@Override
 	public void execute(ICommandSender sender, String[] args)
 			throws CommandException {
-		if(com.sirhuntpredator.pixelplus.listener.combatlog.Coordinator.enabled)
+		if(com.sirhuntpredator.pixelplus.features.combatlog.Coordinator.enabled)
 		{
 			new ChatMessageComposer(EnumChatFormatting.RED + "Disabled the Combat Logger!").send();
-			com.sirhuntpredator.pixelplus.listener.combatlog.Coordinator.enabled = false;
+			com.sirhuntpredator.pixelplus.features.combatlog.Coordinator.enabled = false;
 		}
 		else
 		{
 			new ChatMessageComposer(EnumChatFormatting.GREEN + "Enabled the Combat Logger!").send();
-			com.sirhuntpredator.pixelplus.listener.combatlog.Coordinator.enabled = true;
+			com.sirhuntpredator.pixelplus.features.combatlog.Coordinator.enabled = true;
 		}
 		
 	}

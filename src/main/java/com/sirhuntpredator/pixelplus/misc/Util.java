@@ -1,6 +1,5 @@
 package com.sirhuntpredator.pixelplus.misc;
 
-import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
 
 public class Util {
 

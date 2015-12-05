@@ -41,13 +41,13 @@ import com.sirhuntpredator.pixelplus.command.ToggleCombatLog;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.config.ConfigUtils;
 import com.sirhuntpredator.pixelplus.config.PixelPlusGuiConfig;
+import com.sirhuntpredator.pixelplus.features.arcadeconversionlog.Listener;
+import com.sirhuntpredator.pixelplus.features.scoreboard.ScoreboardUtils;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
 import com.sirhuntpredator.pixelplus.hud.HealthHud;
 import com.sirhuntpredator.pixelplus.hud.HudRegistry;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
-import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
-import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
 import com.sirhuntpredator.pixelplus.misc.AccessWeb;
 import com.sirhuntpredator.pixelplus.misc.KeyBinder;
 import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
@@ -76,11 +76,12 @@ public class PixelPlus
 		instance = this;
 
 		MinecraftForge.EVENT_BUS.register(new Listener());
-		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.purchaselog.Listener());
-		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.ignorechat.Listener());
-		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.listener.combatlog.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.purchaselog.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.ignorechat.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.shiftrightclick.Listener());
 		FMLCommonHandler.instance().bus().register(this);
-		FMLCommonHandler.instance().bus().register(new com.sirhuntpredator.pixelplus.listener.combatlog.Listener());
+		FMLCommonHandler.instance().bus().register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(this);
 		
 	}
