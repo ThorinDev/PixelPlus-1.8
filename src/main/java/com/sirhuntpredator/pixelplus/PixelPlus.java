@@ -7,7 +7,9 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.GuiIngameModOptions;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -16,10 +18,13 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,6 +40,7 @@ import com.sirhuntpredator.pixelplus.command.TestCommand;
 import com.sirhuntpredator.pixelplus.command.ToggleCombatLog;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.config.ConfigUtils;
+import com.sirhuntpredator.pixelplus.config.PixelPlusGuiConfig;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
 import com.sirhuntpredator.pixelplus.hud.HealthHud;
@@ -43,7 +49,6 @@ import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
 import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
 import com.sirhuntpredator.pixelplus.misc.AccessWeb;
-import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
 import com.sirhuntpredator.pixelplus.misc.KeyBinder;
 import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
 
@@ -63,10 +68,7 @@ public class PixelPlus
     public static List<String> hatelist = new ArrayList<String>();
     public boolean test = false;
   
-    public static void reflect()
-    {
-    	//ReflectionUtils.reflectSetField(Minecraft.class, Minecraft.getMinecraft(), "timer", new Timer(5.0F));
-    }
+    
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
@@ -140,7 +142,6 @@ public class PixelPlus
     	HudRegistry.registerHud(new BasicInfoHud());
     	HudRegistry.registerHud(new EffectHud());
     	HudRegistry.registerHud(new HealthHud());
-    	reflect();
     	
         
     }
@@ -230,5 +231,14 @@ public class PixelPlus
 			logWarn("An exception occured in onRenderTick(). Stacktrace below.");
 			e.printStackTrace();
 		}
+	}
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+	public void onEvent(GuiOpenEvent event)
+	{
+	    if (event.gui instanceof GuiIngameModOptions)
+	    {
+	        event.gui = new PixelPlusGuiConfig(Minecraft.getMinecraft().currentScreen);        
+	    }
 	}
 }
