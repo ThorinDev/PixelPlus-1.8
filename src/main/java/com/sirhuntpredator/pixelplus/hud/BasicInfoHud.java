@@ -16,6 +16,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.util.UUIDTypeAdapter;
+import com.sirhuntpredator.pixelplus.config.ConfigUtils;
 import com.sirhuntpredator.pixelplus.hud.modular.Element;
 import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
@@ -31,7 +32,6 @@ public class BasicInfoHud extends HudBase {
 	public static List<String> display = new ArrayList<String>();
 	public static UUID uuidd;
 	public static boolean gotUUID = false;
-	
 	@Override
 	public int id() {
 		return 0;
@@ -40,6 +40,8 @@ public class BasicInfoHud extends HudBase {
 	@Override
 	public void render() throws Exception {
 		
+		mainColor = ConfigUtils.getColorFromConfig(ConfigUtils.basicInfoHudMainColor) + "";
+		itemColor = ConfigUtils.getColorFromConfig(ConfigUtils.basicInfoHudItemColor) + "";
 		ArrayList<String> display = renderlist();
 		Minecraft mc = FMLClientHandler.instance().getClient();
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
@@ -183,7 +185,7 @@ public class BasicInfoHud extends HudBase {
 			}
 			coords.clear();
 			yaw = yaw / 90;
-			m = Double.valueOf(String.format("%.1f", yaw));
+			m = (double) yaw;
 			if (m <= 0.2) {
 				f = "Z+";
 			} else if (m >= 0.3 && m <= 0.7) {
@@ -206,7 +208,7 @@ public class BasicInfoHud extends HudBase {
 			coords.add(0, String.format("%.1f", x));
 			coords.add(1, String.format("%.1f", y));
 			coords.add(2, String.format("%.1f", z));
-			coords.add(3, "" + m);
+			coords.add(3, "" + String.format("%.1f", m));
 			coords.add(4, "" + f);
 			return coords.get(i);
 		}

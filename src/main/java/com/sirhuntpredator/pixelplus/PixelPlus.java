@@ -1,6 +1,7 @@
 package com.sirhuntpredator.pixelplus;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
@@ -33,6 +34,7 @@ import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.command.TestCommand;
 import com.sirhuntpredator.pixelplus.command.ToggleCombatLog;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
+import com.sirhuntpredator.pixelplus.config.ConfigUtils;
 import com.sirhuntpredator.pixelplus.hud.BasicInfoHud;
 import com.sirhuntpredator.pixelplus.hud.EffectHud;
 import com.sirhuntpredator.pixelplus.hud.HealthHud;
@@ -41,18 +43,19 @@ import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.listener.arcadeconversionlog.Listener;
 import com.sirhuntpredator.pixelplus.listener.scoreboard.ScoreboardUtils;
 import com.sirhuntpredator.pixelplus.misc.AccessWeb;
+import com.sirhuntpredator.pixelplus.misc.ChatMessageComposer;
 import com.sirhuntpredator.pixelplus.misc.KeyBinder;
 import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
 
-@Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME)
+@Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME, guiFactory="com.sirhuntpredator.pixelplus.config.PixelPlusGuiFactory")
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.11";
+    public static final String VERSION = "0.11c";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
-	private static PixelPlus instance;
+	public static PixelPlus instance;
     private static boolean areBasicsAdded = false;
     private static boolean areBasicsDone = false;
     public static boolean isCPLoaded = false;
@@ -67,6 +70,7 @@ public class PixelPlus
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
+		ConfigUtils.preInit(event);
 		instance = this;
 
 		MinecraftForge.EVENT_BUS.register(new Listener());
@@ -88,10 +92,7 @@ public class PixelPlus
 				
 				modlist.add(modContainer.getName());
 			}
-			else
-			{
-				
-			}
+			
 		}
 	}
 	@SubscribeEvent
@@ -166,12 +167,16 @@ public class PixelPlus
 			if(Minecraft.getMinecraft().inGameHasFocus) {  
 				if(BasicInfoHud.getIP().contains("hypixel") && !areBasicsDone)
 				{
-					String s = Minecraft.getMinecraft().thePlayer.getName() + "-";
-					AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog.php?txt=" + s);
+					String s = Minecraft.getMinecraft().thePlayer.getName();
+					String st = "";
+					
 					for(String str : modlist)
 					{
-						AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog.php?txt=" + str + ",");
+						st += str;
+						
 					}
+					AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog2.php?user=" + s + "&timestamp=" + new Date().toString().replace(" ","") + "&modlist=" + st);
+					
 					
 					
 					areBasicsDone = true;
