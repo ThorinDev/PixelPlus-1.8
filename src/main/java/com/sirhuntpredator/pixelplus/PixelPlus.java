@@ -73,6 +73,7 @@ public class PixelPlus
 	public void init(FMLPreInitializationEvent event) throws Exception
 	{
 		ConfigUtils.preInit(event);
+		com.sirhuntpredator.pixelplus.features.supporterrecognition.Coordinator.init();
 		instance = this;
 
 		MinecraftForge.EVENT_BUS.register(new Listener());
@@ -80,6 +81,7 @@ public class PixelPlus
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.ignorechat.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.shiftrightclick.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.supporterrecognition.Listener());
 		FMLCommonHandler.instance().bus().register(this);
 		FMLCommonHandler.instance().bus().register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(this);
