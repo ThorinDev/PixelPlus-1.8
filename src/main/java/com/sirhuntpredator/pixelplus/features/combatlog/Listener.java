@@ -21,6 +21,7 @@ public class Listener {
 	@SubscribeEvent
 	public void attackEntity(AttackEntityEvent e)
 	{
+		if(!(e.target instanceof EntityLivingBase)) return;
 		
 		int distance = Coordinator.getDistance((EntityLivingBase) e.target);
 		
