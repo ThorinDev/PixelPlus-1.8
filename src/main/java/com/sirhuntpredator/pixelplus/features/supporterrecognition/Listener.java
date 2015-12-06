@@ -25,12 +25,19 @@ public class Listener
 		{
 			e = EnumChatFormatting.WHITE;
 		}
-		for(String s : Coordinator.supporters)
+		for(String b : Coordinator.supporters)
 		{
-			if(event.message.getFormattedText().contains(s))
+			String s = b.replace(" ", "");
+			boolean dont = false;
+			if(s.equals("") || s.equals(" "))
+			{
+				dont = true;
+			}
+			if(event.message.getFormattedText().contains(s) && !dont)
 			{
 				new ChatMessageComposer(event.message.getFormattedText().replace(s, s + EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD +" [S]" + e)).send(false);
 				event.setCanceled(true);
+				return;
 			}
 		}
 	}
