@@ -52,7 +52,7 @@ import com.sirhuntpredator.pixelplus.misc.AccessWeb;
 import com.sirhuntpredator.pixelplus.misc.KeyBinder;
 import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
 
-@Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME, guiFactory="com.sirhuntpredator.pixelplus.config.PixelPlusGuiFactory")
+@Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME, guiFactory = "com.sirhuntpredator.pixelplus.config.PixelPlusGuiFactory")
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
