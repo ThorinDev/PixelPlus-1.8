@@ -12,12 +12,24 @@ public class Listener
 	@SubscribeEvent
 	public void chat(ClientChatReceivedEvent event)
 	{
-		
+		EnumChatFormatting e;
+		if(event.message.getUnformattedText().contains("deliveries") || event.message.getUnformattedText().contains("joined") || event.message.getUnformattedText().contains("left"))
+		{
+			e = EnumChatFormatting.YELLOW;
+		}
+		else if(event.message.getFormattedText().contains("from") || event.message.getUnformattedText().contains("to"))
+		{
+			e = EnumChatFormatting.GRAY;
+		}
+		else
+		{
+			e = EnumChatFormatting.WHITE;
+		}
 		for(String s : Coordinator.supporters)
 		{
 			if(event.message.getFormattedText().contains(s))
 			{
-				new ChatMessageComposer(event.message.getFormattedText().replace(s, s + EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD +" [S]")).send(false);
+				new ChatMessageComposer(event.message.getFormattedText().replace(s, s + EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD +" [S]" + e)).send(false);
 				event.setCanceled(true);
 			}
 		}
