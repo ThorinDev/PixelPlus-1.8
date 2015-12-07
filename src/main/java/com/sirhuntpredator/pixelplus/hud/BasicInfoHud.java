@@ -161,7 +161,7 @@ public class BasicInfoHud extends HudBase {
 		}
 		catch(Throwable e)
 		{
-			new ChatMessageComposer(e.toString() + " at compass()").send();
+			
 		}
 		return "null";
 		
@@ -215,7 +215,7 @@ public class BasicInfoHud extends HudBase {
 		}
 		catch(Throwable t)
 		{
-			new ChatMessageComposer(t.toString()  +  " at getCoords()").send();
+			
 		}
 		return "null";
 	}
