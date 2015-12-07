@@ -38,7 +38,6 @@ public class KeyBinder {
 		if(config.isPressed()) {
 			
 			FMLClientHandler.instance().getClient().displayGuiScreen(new PixelPlusGuiConfig(Minecraft.getMinecraft().currentScreen));
-			new ChatMessageComposer("e").send();
 		}
 	}
 }
