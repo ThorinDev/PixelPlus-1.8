@@ -80,7 +80,7 @@ public class PixelPlus
 		MinecraftForge.EVENT_BUS.register(new Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.purchaselog.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.ignorechat.Listener());
-		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
+		//MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.shiftrightclick.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.supporterrecognition.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.killhistory.Listener());
