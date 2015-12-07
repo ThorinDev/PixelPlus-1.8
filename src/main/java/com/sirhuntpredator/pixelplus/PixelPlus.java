@@ -38,6 +38,7 @@ import com.sirhuntpredator.pixelplus.command.ModlistCommand;
 import com.sirhuntpredator.pixelplus.command.ModularGuiCommand;
 import com.sirhuntpredator.pixelplus.command.TestCommand;
 import com.sirhuntpredator.pixelplus.command.ToggleCombatLog;
+import com.sirhuntpredator.pixelplus.command.ViewKDCommand;
 import com.sirhuntpredator.pixelplus.command.ViewTransacationsCommand;
 import com.sirhuntpredator.pixelplus.config.ConfigUtils;
 import com.sirhuntpredator.pixelplus.config.PixelPlusGuiConfig;
@@ -56,7 +57,7 @@ import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.2";
+    public static final String VERSION = "0.3";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
@@ -82,6 +83,7 @@ public class PixelPlus
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.shiftrightclick.Listener());
 		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.supporterrecognition.Listener());
+		MinecraftForge.EVENT_BUS.register(new com.sirhuntpredator.pixelplus.features.killhistory.Listener());
 		FMLCommonHandler.instance().bus().register(this);
 		FMLCommonHandler.instance().bus().register(new com.sirhuntpredator.pixelplus.features.combatlog.Listener());
 		MinecraftForge.EVENT_BUS.register(this);
@@ -127,6 +129,7 @@ public class PixelPlus
 		ClientCommandHandler.instance.registerCommand(new TestCommand());
 		ClientCommandHandler.instance.registerCommand(new ModlistCommand());
 		ClientCommandHandler.instance.registerCommand(new ToggleCombatLog());
+		ClientCommandHandler.instance.registerCommand(new ViewKDCommand());
 		//ClientCommandHandler.instance.registerCommand(new ReflectTestCommand());
 		if(!isCPLoaded)
 		{
