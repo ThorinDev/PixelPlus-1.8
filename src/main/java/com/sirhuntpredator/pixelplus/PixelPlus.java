@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -59,7 +60,7 @@ import com.sirhuntpredator.pixelplus.misc.UnsupportedVersionException;
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.34";
+    public static final String VERSION = "0.34b";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
@@ -70,6 +71,7 @@ public class PixelPlus
     public static List<String> modlist = new ArrayList<String>();
     public static List<String> hatelist = new ArrayList<String>();
     public boolean test = false;
+	private boolean showLogo = true;
   
     
 	@EventHandler
@@ -122,6 +124,8 @@ public class PixelPlus
 		{
 			BasicInfoHud.isEnabled = false;
 			isCPLoaded = true;
+			//ReflectionHelper.setPrivateValue(Class.forName("net.kevyporter.chromapixel.ChromePixelConfig"), ReflectionHelper.getPrivateValue(Class.forName("net.kevyporter.chromapixel.ChromePixelMod"), Class.forName("net.kevyporter.chromapixel.ChromePixelMod").newInstance(), "instance"), "showLogo");
+			showLogo = false;
 		}
 
 		ClientCommandHandler.instance.registerCommand(new HudStateSetCommand());
@@ -150,6 +154,7 @@ public class PixelPlus
     	HudRegistry.registerHud(new BasicInfoHud());
     	HudRegistry.registerHud(new EffectHud());
     	HudRegistry.registerHud(new HealthHud());
+  
     	
         
     }
@@ -220,7 +225,10 @@ public class PixelPlus
 				 new BasicInfoHud().render();	
 				 new EffectHud().render();
 				 new HealthHud().render();
+				 
+				 if(showLogo )
 				 Minecraft.getMinecraft().fontRendererObj.drawString(EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + PixelPlus.MODID + EnumChatFormatting.GOLD + " Private Beta " + this.VERSION + EnumChatFormatting.BOLD , 5, 3, 0xffffff);
+				 
 				 if(!areBasicsAdded){
 					 GuiUtils.addBasicsToList(Minecraft.getMinecraft().thePlayer.getName());
 					 areBasicsAdded = true;
