@@ -58,7 +58,7 @@ import com.sirhuntpredator.pixelplus.misc.UnsupportedVersionException;
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.32";
+    public static final String VERSION = "0.33";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
