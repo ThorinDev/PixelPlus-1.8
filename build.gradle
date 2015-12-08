@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.33b-ALPHA"
+version = "0.34-ALPHA"
 group= "com.sirhntpredator.pixelplus" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "pixelplus"
 

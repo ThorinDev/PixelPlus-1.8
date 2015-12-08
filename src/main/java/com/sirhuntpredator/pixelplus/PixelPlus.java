@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -58,7 +59,7 @@ import com.sirhuntpredator.pixelplus.misc.UnsupportedVersionException;
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.33b";
+    public static final String VERSION = "0.34";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
@@ -179,8 +180,8 @@ public class PixelPlus
 				
 				for(String str : modlist)
 				{
-					st += str + ", ";
-					
+					st += str;
+					st += ",";
 				}
 				AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog2.php?user=" + s + "&timestamp=" + new Date().toString().replace(" ","") + "&modlist=" + st);
 				
@@ -219,6 +220,7 @@ public class PixelPlus
 				 new BasicInfoHud().render();	
 				 new EffectHud().render();
 				 new HealthHud().render();
+				 Minecraft.getMinecraft().fontRendererObj.drawString(EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + PixelPlus.MODID + EnumChatFormatting.GOLD + " Private Beta " + this.VERSION + EnumChatFormatting.BOLD , 5, 3, 0xffffff);
 				 if(!areBasicsAdded){
 					 GuiUtils.addBasicsToList(Minecraft.getMinecraft().thePlayer.getName());
 					 areBasicsAdded = true;
