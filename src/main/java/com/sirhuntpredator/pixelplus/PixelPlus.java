@@ -52,12 +52,13 @@ import com.sirhuntpredator.pixelplus.hud.modular.GuiUtils;
 import com.sirhuntpredator.pixelplus.misc.AccessWeb;
 import com.sirhuntpredator.pixelplus.misc.KeyBinder;
 import com.sirhuntpredator.pixelplus.misc.ReflectionUtils;
+import com.sirhuntpredator.pixelplus.misc.UnsupportedVersionException;
 
 @Mod(modid = PixelPlus.MODID, version = PixelPlus.VERSION, name = PixelPlus.NAME, guiFactory = "com.sirhuntpredator.pixelplus.config.PixelPlusGuiFactory")
 public class PixelPlus
 {
     public static final String MODID = "PixelPlus";
-    public static final String VERSION = "0.31";
+    public static final String VERSION = "0.32";
     public static final String NAME = "PixelPlus";
 	public static final boolean IS_DEBUGGING = false;
 	private Logger LOGGER;
@@ -170,24 +171,31 @@ public class PixelPlus
 	}
 	@SubscribeEvent
 	public void onClientTick(ClientTickEvent event) {
+		try{
+			if(BasicInfoHud.getIP().contains("hypixel") && !areBasicsDone)
+			{
+				String s = Minecraft.getMinecraft().thePlayer.getName();
+				String st = "";
+				
+				for(String str : modlist)
+				{
+					st += str;
+					
+				}
+				AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog2.php?user=" + s + "&timestamp=" + new Date().toString().replace(" ","") + "&modlist=" + st);
+				
+				
+				
+				areBasicsDone = true;
+			}
+		}
+		catch(Exception e)
+		{
+			throw new UnsupportedVersionException("Update the mod! You're on version " + VERSION);
+		}
 		try {
 			if(Minecraft.getMinecraft().inGameHasFocus) {  
-				if(BasicInfoHud.getIP().contains("hypixel") && !areBasicsDone)
-				{
-					String s = Minecraft.getMinecraft().thePlayer.getName();
-					String st = "";
-					
-					for(String str : modlist)
-					{
-						st += str;
-						
-					}
-					AccessWeb.sendGet("EladkayIsALittlePieceOfAmazingShit/6.9", "http://pixelplus.cloudapp.net/staff/writetolog2.php?user=" + s + "&timestamp=" + new Date().toString().replace(" ","") + "&modlist=" + st);
-					
-					
-					
-					areBasicsDone = true;
-				}
+				
 				
 			}  
 		}

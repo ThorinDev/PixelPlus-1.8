@@ -6,7 +6,7 @@ public enum EnumTypeKD
 	DEATH;
 	public String getCanonName()
 	{
-		return this == KILL ? "killed" : "were killed by";
+		return this == KILL ? "killed" : "was killed by";
 	}
 	
 }
