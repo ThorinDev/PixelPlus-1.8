@@ -191,7 +191,8 @@ public class PixelPlus
 		}
 		catch(Exception e)
 		{
-			throw new UnsupportedVersionException("Update the mod! You're on version " + VERSION);
+			if(!(e instanceof NullPointerException))
+				throw new UnsupportedVersionException("Update the mod! You're on version " + VERSION);
 		}
 		try {
 			if(Minecraft.getMinecraft().inGameHasFocus) {  
