@@ -16,11 +16,12 @@ public class GuiUtils
 		Element facing  = new Element("Facing", "facing");
 		Element ping  = new Element("Ping", "ping");
 		Element time  = new Element("Time", "time");
-		Element players  = new Element("Players", "players");
+	//	Element players  = new Element("Players", "players");
 		Element ip  = new Element("IP", "ip");
 		Element fps = new Element("FPS", "fps");
 		Element ign = new Element("IGN", "ign");
-		try{
+		try
+		{
 			if(AdminUtils.isSirHunt(name))
 			{
 				Element dankMemes = new Element ("Dank", "memes");
